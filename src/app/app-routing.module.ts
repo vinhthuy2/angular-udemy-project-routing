@@ -1,21 +1,24 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Route } from '@angular/router';
-import { RecipesComponent } from './recipes/recipes.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Route, RouterModule} from '@angular/router';
+import {RecipesComponent} from './recipes/recipes.component';
+import {ShoppingListComponent} from './shopping-list/shopping-list.component';
+import {RecipeDetailComponent} from './recipes/recipe-detail/recipe-detail.component';
+import {RecipeStartComponent} from './recipes/recipe-start/recipe-start.component';
+import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
 
 const routes: Route[] = [
-  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
+  {path: '', redirectTo: '/recipes', pathMatch: 'full'},
   {
     path: 'recipes', component: RecipesComponent,
     children: [
-      { path: '', component: RecipeStartComponent },
-      { path: ':id', component: RecipeDetailComponent }
+      {path: '', component: RecipeStartComponent},
+      {path: 'new', component: RecipeEditComponent},
+      {path: ':id', component: RecipeDetailComponent},
+      {path: ':id/edit', component: RecipeEditComponent},
     ]
   },
-  { path: 'shopping-list', component: ShoppingListComponent }
+  {path: 'shopping-list', component: ShoppingListComponent}
 ];
 
 @NgModule({
@@ -26,4 +29,5 @@ const routes: Route[] = [
   exports: [RouterModule],
   declarations: []
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
